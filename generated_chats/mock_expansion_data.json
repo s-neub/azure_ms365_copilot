@@ -1,0 +1,77 @@
+[
+  {
+    "interaction_id": "mock-hist-001",
+    "user_message": {
+      "id": "msg-u-001",
+      "createdDateTime": "2025-11-21T08:30:00Z",
+      "from": {
+        "user": { "id": "u-123", "displayName": "Sarah Jenkins" }
+      },
+      "body": {
+        "contentType": "html",
+        "content": "<div>I keep getting a 'Gateway Timeout' error when trying to access the ERP system from home. Is the server down?</div>"
+      }
+    },
+    "bot_message": {
+      "id": "msg-b-001",
+      "createdDateTime": "2025-11-21T08:30:05Z",
+      "from": {
+        "user": { "id": "bot-v1", "displayName": "Enterprise Copilot" }
+      },
+      "body": {
+        "contentType": "html",
+        "content": "<div>Gateway timeouts typically indicate a slow connection or a firewall issue. Please ensure you are connected to the corporate VPN (Cisco AnyConnect) and that your home internet speed exceeds 10 Mbps. If the issue persists, try clearing your browser cache.</div>"
+      }
+    }
+  },
+  {
+    "interaction_id": "mock-hist-002",
+    "user_message": {
+      "id": "msg-u-002",
+      "createdDateTime": "2025-11-21T09:15:00Z",
+      "from": {
+        "user": { "id": "u-456", "displayName": "Mike Ross" }
+      },
+      "body": {
+        "contentType": "html",
+        "content": "<div>Where can I find the form for tuition reimbursement? I checked the intranet but got lost.</div>"
+      }
+    },
+    "bot_message": {
+      "id": "msg-b-002",
+      "createdDateTime": "2025-11-21T09:15:03Z",
+      "from": {
+        "user": { "id": "bot-v1", "displayName": "Enterprise Copilot" }
+      },
+      "body": {
+        "contentType": "html",
+        "content": "<div>Tuition Reimbursement forms are located in the HR Portal under 'Professional Development'. You need to submit form TR-90 prior to the course start date. Please note that approval from your Department Head is required.</div>"
+      }
+    }
+  },
+  {
+    "interaction_id": "mock-hist-003",
+    "user_message": {
+      "id": "msg-u-003",
+      "createdDateTime": "2025-11-21T10:00:00Z",
+      "from": {
+        "user": { "id": "u-789", "displayName": "Jessica Pearson" }
+      },
+      "body": {
+        "contentType": "html",
+        "content": "<div>Can I invite an external client to the internal Teams channel? We need to collaborate on the merger docs.</div>"
+      }
+    },
+    "bot_message": {
+      "id": "msg-b-003",
+      "createdDateTime": "2025-11-21T10:00:10Z",
+      "from": {
+        "user": { "id": "bot-v1", "displayName": "Enterprise Copilot" }
+      },
+      "body": {
+        "contentType": "html",
+        "content": "<div>External guest access is disabled by default for internal Teams channels per Policy IT-Sec-22. You must request a dedicated 'External Collaboration' team site through the IT Support Request portal to share files safely with clients.</div>"
+      }
+    }
+  }
+]
