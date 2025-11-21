@@ -1,77 +1,55 @@
-# =============================================================================
-#  MODELOP PARTNER LAB - CONFIGURATION FILE
-# =============================================================================
-
-# --- MODE SELECTION ---
-# true  = Connect to your Azure Tenant to fetch real Microsoft 365 Copilot logs.
-# false = Generate synthetic data using local AI (Ollama).
 mode:
   use_real_azure: false
   use_ai_generation: true
-  ollama_model: "qwen2.5"
-
-# --- FILE MANAGEMENT & AUTOMATION ---
+  ollama_model: qwen2.5
 files:
-  output_folder: "generated_chats"
-  
-  # AUTOMATION: If true, the script automatically overwrites 'comparator_data.json' 
-  # with the data generated in the current run.
+  output_folder: generated_chats
   auto_update_comparator: true
-
-  # BASELINE CONTROL:
-  # The script copies this specific file to 'baseline_data.json' ONLY if:
-  # 1. You change the filename below.
-  # 2. Or, the file's modification time is newer than 'last_run_timestamp'.
-  baseline_source_file: "C:\\Users\\Sam Neubauer\\OneDrive - ModelOp\\_code_\\datasource_endpoints\\azure_ms365_copilot\\generated_chats\\modelop_llm_data_20251120_185105.json"
-  
-  # COMPARATOR TRACKING:
-  # Automatically updated by the script when 'auto_update_comparator' is true.
-  comparator_source_file: "C:\\Users\\Sam Neubauer\\OneDrive - ModelOp\\_code_\\datasource_endpoints\\azure_ms365_copilot\\generated_chats\\modelop_llm_data_20251120_194249.json"
-  
-  # INTERNAL TRACKING (Do not edit manually)
-  # Stores the ISO timestamp of the last successful run.
-  last_run_timestamp: "2025-11-20T19:42:49.000000"
-  last_used_baseline_file: "C:\\Users\\Sam Neubauer\\OneDrive - ModelOp\\_code_\\datasource_endpoints\\azure_ms365_copilot\\generated_chats\\modelop_llm_data_20251120_185105.json"
-
-# --- SIMULATION SETTINGS (Used when use_real_azure is false) ---
+  baseline_source_file: C:\Users\Sam Neubauer\OneDrive - ModelOp\_code_\datasource_endpoints\azure_ms365_copilot\generated_chats\modelop_llm_data_20251120_205252.json
+  comparator_source_file: generated_chats\modelop_llm_data_20251120_212208.json
+  last_run_timestamp: '2025-11-20T21:22:08.135208'
+  last_used_baseline_file: C:\Users\Sam Neubauer\OneDrive - ModelOp\_code_\datasource_endpoints\azure_ms365_copilot\generated_chats\modelop_llm_data_20251120_205252.json
+azure:
+  tenant_id: YOUR_TENANT_ID
+  client_id: YOUR_CLIENT_ID
+  client_secret: YOUR_CLIENT_SECRET
+  bot_user_id: YOUR_BOT_OBJECT_ID
 simulation:
   num_records: 25
-  copilot_agent_id: "enterprise-copilot-v1"
-  
-  # Fault Injection Rates (0.0 to 1.0)
+  copilot_agent_id: enterprise-copilot-v1
   rates:
-    pii: 0.15               # Inject Fake SSNs/Phones
-    toxicity: 0.10          # Inject rude language
-    negative_sentiment: 0.20 # Inject angry tone
-
+    pii: 0.15
+    toxicity: 0.1
+    negative_sentiment: 0.2
+  adversarial_injection:
+    active: false
+    proportion: 0.15
+    techniques:
+    - whaling_ceo_impersonation
+    - ignore_instructions
+  rails:
+    active: false
+    phases:
+    - instruction_adherence
+    - identity_protection
   topics:
-    - "VPN Connectivity and Remote Access troubleshooting"
-    - "Expense Report submission policies (T&E)"
-    - "Employee Benefits enrollment (Health/Dental)"
-    - "Conference Room booking and AV equipment"
-    - "Password Reset and MFA configuration"
-    - "Procurement of new hardware/laptops"
-    - "Quarterly Performance Review guidelines"
-    - "Guest Wi-Fi access for visitors"
-    - "Payroll direct deposit updates"
-
-# --- AZURE CREDENTIALS (Used when use_real_azure is true) ---
-azure:
-  tenant_id: "YOUR_TENANT_ID"
-  client_id: "YOUR_CLIENT_ID"
-  client_secret: "YOUR_CLIENT_SECRET"
-  bot_user_id: "YOUR_BOT_OBJECT_ID"
-
-# --- SYSTEM PROMPTS (LLM Instructions) ---
+  - VPN Connectivity and Remote Access troubleshooting
+  - Expense Report submission policies (T&E)
+  - Employee Benefits enrollment (Health/Dental)
+  - Conference Room booking and AV equipment
+  - Password Reset and MFA configuration
+  - Procurement of new hardware/laptops
+  - Quarterly Performance Review guidelines
+  - Guest Wi-Fi access for visitors
+  - Payroll direct deposit updates
 prompts:
-  system_instruction: >
-    You are a synthetic data generator for a Corporate Enterprise Chatbot.
-    Context: Employee {employee_name} in the {department} department.
-    Topic: {topic}.
-    
-    Generate a JSON object with exactly three keys:
-    1. 'question': A realistic question an employee would ask IT/HR/Ops regarding this topic.
-    2. 'response': The Chatbot's helpful, professional answer.
-    3. 'reference_answer': A strictly factual, dry, policy-based answer used for auditing purposes.
-    
-    Do not include markdown formatting, just the raw JSON.
+  system_instruction: 'You are a synthetic data generator for a Corporate Enterprise
+    Chatbot. Context: Employee {employee_name} in the {department} department. Topic:
+    {topic}.
+
+    Generate a JSON object with exactly three keys: 1. ''question'': A realistic question
+    an employee would ask IT/HR/Ops regarding this topic. 2. ''response'': The Chatbot''s
+    helpful, professional answer. 3. ''reference_answer'': A strictly factual, dry,
+    policy-based answer used for auditing purposes.
+
+    Do not include markdown formatting, just the raw JSON.'

@@ -24,27 +24,27 @@ To generate a clean baseline that produces **zero alerts** (an "All Green" dashb
 ```yaml
 # config.yaml (Baseline Configuration)
 simulation:
-rates:
-    # Philosophy: Strict Compliance. 
-    # In a perfect world, users never type SSNs into chat. 
-    pii: 0.0
+    rates:
+        # Philosophy: Strict Compliance. 
+        # In a perfect world, users never type SSNs into chat. 
+        pii: 0.0
 
-    # Philosophy: Professional Standards.
-    # Corporate bots must remain polite, even when users are not.
-    toxicity: 0.0
+        # Philosophy: Professional Standards.
+        # Corporate bots must remain polite, even when users are not.
+        toxicity: 0.0
 
-    # Philosophy: Realistic Tolerance.
-    # IT Helpdesks naturally involve frustration ("My printer is broken").
-    # A 5% background level establishes "normal" frustration, so monitors 
-    # only alert on major spikes in anger (e.g., 20%+).
-    negative_sentiment: 0.05
+        # Philosophy: Realistic Tolerance.
+        # IT Helpdesks naturally involve frustration ("My printer is broken").
+        # A 5% background level establishes "normal" frustration, so monitors 
+        # only alert on major spikes in anger (e.g., 20%+).
+        negative_sentiment: 0.05
 ```
 ---
 
 ### ☕ The "Coffee Break" Factor
 **Read this first!** Running Artificial Intelligence on a standard laptop is hard work.
-* **Speed:** Expect each conversation to take **3–5 minutes** to generate.
-* **Total Time:** Generating the full dataset (25 records) usually takes **about an hour**.
+* **Speed:** Expect each conversation to take **1–5 minutes** to generate.
+* **Total Time:** Generating the full dataset (25 records) can take **up to an hour**.
 * **Pro Tip:** Start the script, grab a coffee, and let it do the heavy lifting in the background.
 
 ---
