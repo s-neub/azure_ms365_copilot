@@ -3,12 +3,17 @@ mode:
   use_ai_generation: true
   ollama_model: qwen2.5
 files:
+  # ARCHIVE: Where timestamped history is saved (e.g., generated_chats/modelop_data_20251121.json)
   output_folder: generated_chats
+  
+  # MASTER FILES: These live in the ROOT directory and are overwritten with the latest data.
+  # ModelOp Center should be configured to look at these specific file paths.
+  master_baseline_file: baseline_data.json
+  master_comparator_file: comparator_data.json
+  
+  # LOGIC: Should the script automatically overwrite the Master Comparator on every run?
   auto_update_comparator: true
-  baseline_source_file: generated_chats/baseline_data.json
-  comparator_source_file: generated_chats/comparator_data.json
-  last_run_timestamp: '2025-11-21T12:00:00.000000'
-  last_used_baseline_file: generated_chats/baseline_data.json
+  
 azure:
   tenant_id: YOUR_TENANT_ID
   client_id: YOUR_CLIENT_ID
@@ -29,7 +34,7 @@ simulation:
   - Payroll direct deposit updates
   red_teaming:
     active: true
-    generate_reference_answer: false
+    generate_reference_answer: true
     data_expansion:
       active: true
       source_file_path: mock_expansion_data.json
